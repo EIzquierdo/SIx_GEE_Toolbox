@@ -1,6 +1,4 @@
 # SI-x-GEE-API-Toolbox
-## SI-x-GEE-API-Toolbox contains...
-
 
 Extended Spring Index models GEE-API toolbox:
 
