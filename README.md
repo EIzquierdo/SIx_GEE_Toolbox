@@ -14,6 +14,3 @@ The Extended Spring Indices (SI-x) toolbox contains:
 
    <e.izquierdoverdiguier@utwente.nl>
    <r.zurita-milla@utwente.nl>
-
-# NewCourseReport
-# NewCourseReport
