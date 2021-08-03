@@ -172,7 +172,8 @@ ImageCollectionSOS = ImageCollectionSOS.map(maskimages)
 # falseSpring = ImageCollectionDI.map(FSI)
 
 scl = 1000
-reg =[[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]]
+reg =ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99],
+                           [44.816, 35.99], [44.816, 71.2583]]])
 
 # Leaf_Collection_mean = ImageCollectionLf.mean()
 # task = ee.batch.Export.image(Leaf_Collection_mean.multiply(maskEurope), 'Leaf_mean', {'maxPixels':9999999999,'scale':scl,'region':reg})
@@ -290,17 +291,17 @@ SOS_Collection_mean = ImageCollectionSOS.mean()
 task = ee.batch.Export.image(SOS_Collection_mean.multiply(maskEurope), 'SOS_mean', {'maxPixels':9999999999,'scale':scl,'region':reg})
 task.start()
 while task.status()['state'] == 'RUNNING':
-         print 'Running...'
+         print ('Running...')
          time.sleep(1)
-print 'Done.', task.status()
+print ('Done.'), task.status()
 
 SOS_Collection_std = ImageCollectionSOS.reduce(ee.Reducer.sampleStdDev())
 task = ee.batch.Export.image(SOS_Collection_std.multiply(maskEurope), 'SOS_std', {'maxPixels':9999999999,'scale':scl,'region':reg})
 task.start()
 while task.status()['state'] == 'RUNNING':
-         print 'Running...'
+         print ('Running...')
          time.sleep(1)
-print 'Done.', task.status()
+print ('Done.'), task.status()
 
 # SOS_Collection_trend = ImageCollectionSOS.formaTrend()
 # task = ee.batch.Export.image(SOS_Collection_trend.select(0).multiply(maskEurope), 'SOS_trend', {'maxPixels':9999999999,'scale':scl,'region':reg})

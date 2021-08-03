@@ -143,8 +143,8 @@ def defcoll(im):
 # *************************************** GROWING DEGREE HOUR*******************************************/
 def GDH(im):
     # convert temperature minimum from Celsius to Fahrenheit
-    tminband = im.select(2)  # .expression('(b(2) *1.8) + 32')
-    temp_diff = im.select(1).subtract(tminband)  # .expression('(b(1) * 1.8) + 32')
+    tminband = im.expression('(b(2) *1.8) + 32')
+    temp_diff = im.expression('(b(1) * 1.8) + 32').subtract(tminband)
 
     # convert the daylength-convert from second to hours
     daylen = im.expression('b(0)/3600')
@@ -223,7 +223,8 @@ def LinRegress(im):
 startdate = 126
 enddate = 250
 thr_max = enddate + 5
-reg = [[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]]
+reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99],
+                            [44.816, 35.99], [44.816, 71.2583]]])
 
 Image11 = []
 Image21 = []
@@ -276,6 +277,6 @@ for m in range(0, len(years)):
                                          scale=scl, maxPixels=9999999999)
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()

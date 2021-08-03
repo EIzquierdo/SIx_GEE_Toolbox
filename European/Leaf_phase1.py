@@ -41,7 +41,7 @@ import time
 ee.Initialize()
 
 user = 'users/Emma/'
-years = [2003, 2004, 2005, 2006]
+years = [1954, 1975]
 
 scl = 1000  #  # 4638.23937   27829.87269831839
 
@@ -137,8 +137,8 @@ def defcoll(im):
 # #*************************************** GROWING DEGREE HOUR*******************************************/
 def GDH(im):
     # # convert temperature munimum from Celsius to Fahrenheit
-    tminband = im.select(2)  # .expression('(b(2) *1.8) + 32')
-    temp_diff = im.select(1).subtract(tminband)  # .expression('(b(1) * 1.8) + 32')
+    tminband = im.expression('(b(2) *1.8) + 32')
+    temp_diff = im.expression('(b(1) * 1.8) + 32').subtract(tminband)
 
     # convert the daylength-convert from second to hours
     daylen = im.expression('b(0)/3600')
@@ -235,10 +235,11 @@ def LinRegress(im):
 startdate = 1
 enddate = 125
 thr_max = enddate + 5
-reg = [[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]]
+reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99],
+                            [44.816, 35.99], [44.816, 71.2583]]])
 
 for yr in years:
-    print yr
+    print(yr)
 
     # *******PART 1--- Selection the E_obs image collection********************/
     collection = ee.ImageCollection('users/Emma/E_Obs/' + str(yr))
@@ -278,9 +279,9 @@ for yr in years:
 
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()
     # ****************************END OF PART 3**********************************/
 
     # **********PART 4 --- linear regression to the predictors and filter values higher than 1000***/
@@ -294,6 +295,6 @@ for yr in years:
 
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()

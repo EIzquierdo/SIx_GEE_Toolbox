@@ -48,7 +48,8 @@ root1 = user + 'Leaf' + data + '_1/'
 root2 = user + 'Leaf' + data + '_2/'
 folder = 'Leaf' + data
 
-reg = [[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]]
+reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99],
+                            [44.816, 35.99], [44.816, 71.2583]]])
 
 Image11 = []
 Image21 = []
@@ -72,16 +73,18 @@ for m in range(0, len(years)):
                                          scale=scl, maxPixels=9999999999)
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()
 
     nameImage = str(yr)
-    task = ee.batch.Export.image(Final_Leaf, nameImage,
-                                 {'maxPixels': 9999999999, 'driveFolder': folder, 'scale': scl, 'region': reg})
+    task = ee.batch.Export.image.toDrive(Final_Leaf, nameImage,
+                                         {'maxPixels': 9999999999,
+                                          'driveFolder': folder,
+                                          'scale': scl, 'region': reg})
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()
 

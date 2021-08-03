@@ -135,8 +135,8 @@ def defcoll(im):
 
 # *************************************** GROWING DEGREE HOUR*******************************************/
 def GDH(im):
-    tminband = im.select(2)  # .expression('(b(2) *1.8) + 32')
-    temp_diff = im.select(1).subtract(tminband)  # .expression('(b(1) * 1.8) + 32')
+    tminband = im.expression('(b(2) *1.8) + 32')
+    temp_diff = im.expression('(b(1) * 1.8) + 32').subtract(tminband)
 
     # convert the daylength-convert from second to hours
     daylen = im.expression('b(0)/3600')
@@ -215,7 +215,8 @@ def LinRegress(im):
 startdate = 1
 enddate = 125
 thr_max = enddate + 5
-reg = [[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]]
+reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99],
+                            [44.816, 35.99], [44.816, 71.2583]]])
 
 Image1 = []
 for yr in years:
@@ -225,7 +226,7 @@ leaf = ee.List(Image1)
 
 for m in range(0, len(years)):
     yr = years[m]
-    print yr
+    print(yr)
 
     # *******PART 1--- Selection the daymet image collection********************/
     collection = ee.ImageCollection('users/Emma/E_Obs/' + str(yr))
@@ -260,9 +261,9 @@ for m in range(0, len(years)):
                                          region=reg, scale=scl, maxPixels=9999999999)
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()
     # #****************************END OF PART 3**********************************/
 
     # #**********PART 4 --- linear regression to the predictors and filter values higher than 1000***/
@@ -276,6 +277,6 @@ for m in range(0, len(years)):
 
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()

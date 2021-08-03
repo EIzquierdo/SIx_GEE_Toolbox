@@ -50,7 +50,8 @@ folder = 'Bloom' + data
 
 root_leaf = user + 'Leaf' + data
 
-reg = [[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]]
+reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99],
+                            [44.816, 35.99], [44.816, 71.2583]]])
 
 Image11 = []
 Image21 = []
@@ -78,16 +79,18 @@ for m in range(0, len(years)):
                                          scale=scl, maxPixels=9999999999)
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()
 
     nameImage = str(yr)
-    task = ee.batch.Export.image(Final_Bloom, nameImage,
-                                 {'maxPixels': 9999999999, 'scale': scl, 'driveFolder': folder, 'region': reg})
+    task = ee.batch.Export.image.toDrive(Final_Bloom, nameImage,
+                                         {'maxPixels': 9999999999,
+                                          'scale': scl, 'driveFolder': folder,
+                                          'region': reg})
     task.start()
     while task.status()['state'] == 'RUNNING':
-        print 'Running...'
+        print('Running...')
         time.sleep(1)
-    print 'Done.', task.status()
+    print('Done.'), task.status()
 
