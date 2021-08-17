@@ -40,7 +40,7 @@ import time
 ee.Initialize()
 
 user = 'users/Emma/'
-years = [2003, 2004, 2005, 2006]
+years = [1951]
 # data = 'users/Emma/E_Obs25km/'   # 'NASA/ORNL/DAYMET_V3'   'IDAHO_EPSCOR/GRIDMET'  'IDAHO_EPSCOR/MACAv2_METDATA'
 scl = 1000  # 1000  4638.23937 27829.87269831839
 
@@ -135,8 +135,8 @@ def defcoll(im):
 
 # *************************************** GROWING DEGREE HOUR*******************************************/
 def GDH(im):
-    tminband = im.expression('(b(2) *1.8) + 32')
-    temp_diff = im.expression('(b(1) * 1.8) + 32').subtract(tminband)
+    tminband = im.expression('(b(2) *1.8/100) + 32')
+    temp_diff = im.expression('(b(1) * 1.8/100) + 32').subtract(tminband)
 
     # convert the daylength-convert from second to hours
     daylen = im.expression('b(0)/3600')
@@ -268,7 +268,7 @@ for m in range(0, len(years)):
 
     # #**********PART 4 --- linear regression to the predictors and filter values higher than 1000***/
     ones = predictors.map(LinRegress).min()
-    bloom = ones.where(ones.eq(thr_max), 0)
+    bloom = ones.where(ones.eq(thr_max), 0).toByte()
 
     imageAsset = user + folder + '/' + str(yr)
     task = ee.batch.Export.image.toAsset(image=bloom, description=str(yr),

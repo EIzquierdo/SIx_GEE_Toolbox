@@ -40,7 +40,7 @@ import time
 ee.Initialize()
 
 user = 'users/Emma/'
-years = [2003, 2004, 2005, 2006]
+years = [1951]
 data = 'European'  # 'Daymetv3', 'Gidmet', 'Maca'
 scl = 1000 # 27829.87269831839 1000  4638.23937
 
@@ -65,7 +65,9 @@ for m in range(0, len(years)):
     leaf_yr = ee.Image(ee.List(leaf).get(m))
     leaf_yr2 = ee.Image(ee.List(leaf2).get(m))
     Final_Leaf = leaf_yr.where(leaf_yr.eq(0), leaf_yr2)
-    Final_Leaf = Final_Leaf.addBands(((Final_Leaf.select(0).add(Final_Leaf.select(1)).add(Final_Leaf.select(2))).divide(ee.Image(3))).round())
+    num = Final_Leaf.select(0).neq(0).add(Final_Leaf.select(1).neq(0)).add(Final_Leaf.select(2).neq(0))
+    Final_Leaf = Final_Leaf.addBands(((Final_Leaf.select(0).add(Final_Leaf.select(1)).add(Final_Leaf.select(2)))
+                                      .divide(num)).round())
 
     imageAsset = user + folder + '/' + str(yr)
     task = ee.batch.Export.image.toAsset(image=Final_Leaf, description=str(yr), assetId=imageAsset,
@@ -78,10 +80,9 @@ for m in range(0, len(years)):
     print('Done.'), task.status()
 
     nameImage = str(yr)
-    task = ee.batch.Export.image.toDrive(Final_Leaf, nameImage,
-                                         {'maxPixels': 9999999999,
-                                          'driveFolder': folder,
-                                          'scale': scl, 'region': reg})
+    task = ee.batch.Export.image.toDrive(image=Final_Leaf, description=nameImage,
+                                         maxPixels=9999999999, driveFolder=folder,
+                                         scale=scl, region=reg)
     task.start()
     while task.status()['state'] == 'RUNNING':
         print('Running...')

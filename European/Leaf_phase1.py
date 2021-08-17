@@ -41,7 +41,7 @@ import time
 ee.Initialize()
 
 user = 'users/Emma/'
-years = [1954, 1975]
+years = [1951]
 
 scl = 1000  #  # 4638.23937   27829.87269831839
 
@@ -137,8 +137,8 @@ def defcoll(im):
 # #*************************************** GROWING DEGREE HOUR*******************************************/
 def GDH(im):
     # # convert temperature munimum from Celsius to Fahrenheit
-    tminband = im.expression('(b(2) *1.8) + 32')
-    temp_diff = im.expression('(b(1) * 1.8) + 32').subtract(tminband)
+    tminband = im.expression('(b(2) *1.8/100) + 32')
+    temp_diff = im.expression('(b(1) * 1.8/100) + 32').subtract(tminband)
 
     # convert the daylength-convert from second to hours
     daylen = im.expression('b(0)/3600')
@@ -286,7 +286,7 @@ for yr in years:
 
     # **********PART 4 --- linear regression to the predictors and filter values higher than 1000***/
     ones = predictors.map(LinRegress).min()
-    leaf = ones.where(ones.eq(thr_max), 0)
+    leaf = ones.where(ones.eq(thr_max), 0).toByte()
 
     imageAsset = user + folder + '/' + str(yr)
 
