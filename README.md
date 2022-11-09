@@ -1,4 +1,4 @@
-# Extended Spring Indices: Toolbox to process in Google Earth Engine.
+# Extended Spring Indices: Toolbox using Google Earth Engine.
 
 This toolbox contains the scripts needed to calculate the spring onset (Leaf and Bloom indices) using Google Earth Engine python API.
 
