@@ -39,7 +39,7 @@ At the present, there are two study areas of the new SI-x products available:
 
 Leaf over America             |  Leaf over Europe
 :-------------------------:|:-------------------------:
-<img width="400" height="250" src="./gif/America.gif">  |   <img width="400" height="300" src="./gif/Europe.gif">
+<img width="350" height="200" src="./gif/America.gif">  |   <img width="350" height="200" src="./gif/Europe.gif">
 
 # Instalation:
 
