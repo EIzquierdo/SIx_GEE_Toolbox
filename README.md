@@ -37,13 +37,9 @@ At the present, there are two study areas of the new SI-x products available:
 * North and Central America (located between 14°02'31.3"N and 55°37'04.1"N latitude and 56°05'50.7"W 126°22'06.1"W longitude). [Daymet version 4](https://daymet.ornl.gov/) from 1980 to 2021, were used to generated the dataset of this study area. The needed data (i.e. daily maximunim and minimum temperature and the daylength) are available GEE database.
 * Europe (located between 35°55'48.7"N and 73°32'47.1"N latitude and  10°36'29.5"W and 44°50'29.5"E longitude). The daily maximum and minimum temperature used is the [Downscaled version of European Observations (E-OBS)](https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.4436) version 3 from 1950 to 2020. Downscaled E-OBS is avabalible for downloading [here](/url{ftp://palantir.boku.ac.at/Public/ClimateData}). The daylength is calculated once the data are ingested. In this case, the data is not avaibailable in GEE database and it is needed to ingest the data in the API.
 
-<p align="left">
-  <img width="400" height="250" src="./gif/America.gif">
-</p>  
-
-<p align="right">
-  <img width="400" height="300" src="./gif/Europe.gif">
-</p>  
+Leaf over America             |  Leaf over Europe
+:-------------------------:|:-------------------------:
+<img width="400" height="250" src="./gif/America.gif">  |   <img width="400" height="300" src="./gif/Europe.gif">
 
 # Instalation:
 
