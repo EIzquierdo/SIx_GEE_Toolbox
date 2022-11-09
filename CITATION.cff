@@ -1,0 +1,27 @@
+# YAML 1.2
+---
+authors:
+  -
+    affiliation: "Institute of Geomatics, Vienna BOKU"
+    family-names: Izquierdo-Verdiguier
+    given-names: Emma
+    orcid: https://orcid.org/0000-0003-2179-1262
+  -
+    affiliation: "Faculty ITC - University of Twente"
+    family-names: Zurita-Milla
+    given-names: Raul
+    orcid: https://orcid.org/0000-0002-1769-6310
+    
+cff-version: "5.0"
+date-released: 2022-11-10
+doi: "xxx/zzzzzz"
+keywords:
+  - "spring onset"
+  - "google earth engine"
+  - "continenal scale"
+  - "high resolution"
+license: "xxxxxx"
+message: "If you use this software, please cite it using these metadata."
+title: "Extended Spring Indices: Toolbox to process in Google Earth Engine. "
+version: "5.0"
+...
