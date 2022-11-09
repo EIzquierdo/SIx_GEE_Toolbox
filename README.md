@@ -31,6 +31,14 @@ $$ACGDH\cdot0.096+MDS0\cdot11.368>=1000$$
 
 where $ACGDH$ is the accumulation of GDH from LF index and, $MDS0$ is still a counter but it starts on the LF index date.
 
+## Description
+
+This toolbox contains the following functions:
+
+1. Leaf_Index.py    - Computes the Leaf images from 1st January to the day of the year (DOY) 300. The images have four bands: Lilac, Arnold Red, Zabeli and Leaf.
+2. Bloom_Index.py   - Computes the Bloom images from 1st January to the day of the year (DOY) 300. The images have four bands: Lilac, Arnold Red, Zabeli and Bloom.
+3. six_functions.py - Main file that contains the functions used to calculate spring indices.
+
 ## Study areas
 
 At the present, there are two study areas of the new SI-x products available:
@@ -46,3 +54,10 @@ Leaf over America             |  Leaf over Europe
 To install the libraries:
 
     pip install -r requirements.txt
+    
+# Contact
+
+If you have problems with the toolbox, please contact to us. 
+
+* Emma Izquierdo-Verdiguier: <emma.izquierdo@boku.ac.at>
+* Raul Zurita-Milla: <r.zurita-milla@utwente.nl>
