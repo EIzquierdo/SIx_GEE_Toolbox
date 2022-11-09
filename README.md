@@ -31,7 +31,7 @@ $$ACGDH\cdot0.096+MDS0\cdot11.368>=1000$$
 
 where $ACGDH$ is the accumulation of GDH from LF index and, $MDS0$ is still a counter but it starts on the LF index date.
 
-## Description
+# Description
 
 This toolbox contains the following functions:
 
