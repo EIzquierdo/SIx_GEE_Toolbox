@@ -46,7 +46,7 @@ At the present, the 1 km SI-x products are available over two study areas:
 * North and Central America (located between 14°02'31.3"N and 55°37'04.1"N latitude and 56°05'50.7"W 126°22'06.1"W longitude). [Daymet version 4](https://daymet.ornl.gov/) from 1980 to 2021, was used to generate this dataset. The daily maximunim and minimum temperature and daylength are available in GEE.
 * Europe (located between 35°55'48.7"N and 73°32'47.1"N latitude and  10°36'29.5"W and 44°50'29.5"E longitude). The daily maximum and minimum temperature come from the [Downscaled version of European Observations (E-OBS)](https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.4436) version 3 from 1950 to 2020, which is available for download [here](/url{ftp://palantir.boku.ac.at/Public/ClimateData}). The daylength is calculated (modelled) once the data are ingested in GEE (ingested because this data is not directly available in GEE). 
 
-Leaf over cotiguous US     |  Leaf over Europe
+Leaf over contiguous US    |  Leaf over Europe
 :-------------------------:|:-------------------------:
 <img width="350" height="200" src="./gif/America.gif">  |   <img width="350" height="200" src="./gif/Europe.gif">
 
