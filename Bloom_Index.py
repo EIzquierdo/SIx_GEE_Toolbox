@@ -47,9 +47,8 @@ from six_functions import LinRegressBloom
 ee.Initialize()
 
 user = 'users/Emma/'
-years = list(np.linspace(1991, 1996, num=6))
-# years = [1999]  # 1963, 1970, 1971, 1973, 1976, 1984
-area = 'europe'
+years = list(np.linspace(1980, 2021, num=42))
+area = 'conus'
 
 if area == 'europe':
     data = 'E_Obs'
@@ -132,7 +131,7 @@ for yr in years:
     imageAsset = user + folder + '/' + str(yr)
     task = ee.batch.Export.image.toAsset(image=Final_Bloom, description=str(yr),
                                          assetId=imageAsset, region=reg,
-                                         scale=scl, maxPixels=9999999999,
+                                         scale=scl, maxPixels=1.0E13,
                                          crs='EPSG:4326')
 
     task.start()

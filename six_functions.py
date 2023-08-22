@@ -283,3 +283,20 @@ def LinRegressBloom(predictors, thr_max):
         return doy_im.addBands(doy_im2).addBands(doy_im3).rename(['lilac', 'red', 'zabeli']) \
             .copyProperties(im, ['system:time_start'])
     return predictors.map(LinRegress)
+
+
+def lastFreeze(collection, area):
+
+    def lastFreezeIndex(Temperature):
+        date = ee.Date(Temperature.get("system:time_start"))
+        I = ee.Image(ee.Number(date.getRelative('day', 'year')).add(1))
+        if area == 'europe':
+            Temperature = Temperature.expression('b(0)/100 *1.8 + 32')
+
+        elif area == 'conus':
+            Temperature = Temperature.expression('(b(0) *1.8) + 32')
+        Tfreeze = Temperature.where(Temperature.lte(28), I)
+        Tfreeze = Tfreeze.where(Temperature.gt(28), 0)
+        return Tfreeze
+
+    return collection.map(lastFreezeIndex)
