@@ -43,30 +43,28 @@ from six_functions import lastFreeze
 ee.Initialize()
 
 user = 'users/Emma/'
-years = list(np.linspace(1980, 2021, num=42))
 area = 'conus'
 
 if area == 'europe':
+    years = list(np.linspace(1950, 2020, num=71))
     data = 'E_Obs'
-    last_folder = 'LastF_Europev3'
-    di_sc_folder = 'DI_Europev3_sc'
-    di_folder = 'DI_Europev3'
-    leaf_folder = 'SIx_products/LeafEuropev3'
+    last_folder = 'SIx_products/LastF_Europev3/'
+    di_folder = 'SIx_products/DI_Europev3/'
+    leaf_folder = 'SIx_products/LeafEuropev3/'
 
     bandminT = 1
 
 elif area == 'conus':
+    years = list(np.linspace(1980, 2022, num=43))
     data = 'NASA/ORNL/DAYMET_V4'
-    last_folder = 'LastF_Daymetv4'
-    di_sc_folder = 'DI_Daymetv4_sc'
-    di_folder = 'DI_Daymetv4'
-    leaf_folder = 'SIx_products/LeafDaymetv4'
+    last_folder = 'SIx_products/LastF_Daymetv4/'
+    di_folder = 'SIx_products/DI_Daymetv4/'
+    leaf_folder = 'SIx_products/LeafDaymetv4/'
 
     bandminT = 5
 
 root_lastf = user + last_folder
 root_leaf = user + leaf_folder
-root_di_sc = user + di_sc_folder
 root_di = user + di_folder
 
 startdate = 1
@@ -101,7 +99,7 @@ for yr in years:
     # ****************************END OF PART 1**********************************/
 
     # ********PART 2--- Mapping the last freeze function to the collection*******/
-    LastFIndex = lastFreeze(collection, area).max()
+    LastFIndex = lastFreeze(collection, area).max().rename('Last_F')
 
     imageAsset = root_lastf + str(yr)
 
@@ -120,9 +118,10 @@ for yr in years:
     Leaf = ee.Image(root_leaf + str(yr))
 
     di = Leaf.subtract(LastFIndex)\
-        .set({'system:time_start': ee.Date.fromYMD(ee.Number.parse(Leaf.id()), 1, 1).millis()})
+        .set({'system:time_start': ee.Date.fromYMD(ee.Number.parse(Leaf.id()), 1, 1).millis()})\
+        .rename(['lilac','red','zabeli','DI'])
 
-    imageAsset = root_di_sc + str(yr)
+    imageAsset = root_di + str(yr)
     task = ee.batch.Export.image.toAsset(image=di, description=str(yr), assetId=imageAsset,
                                          region=reg, scale=scl, maxPixels=1.0E13)
 

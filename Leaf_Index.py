@@ -48,10 +48,10 @@ from six_functions import LinRegressLeaf
 ee.Initialize()
 
 user = 'users/Emma/'
-years = list(np.linspace(1980, 2021, num=42))
 area = 'conus'
 
 if area == 'europe':
+    years = list(np.linspace(1950, 2020, num=71))
     data = 'E_Obs'
     folder = 'SIx_products/LeafEuropev3'
 
@@ -59,6 +59,7 @@ if area == 'europe':
     bandminT = 2
 
 elif area == 'conus':
+    years = list(np.linspace(1980, 2022, num=43))
     data = 'NASA/ORNL/DAYMET_V4'
     folder = 'SIx_products/LeafDaymetv4'
 
