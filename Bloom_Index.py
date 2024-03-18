@@ -72,7 +72,12 @@ root = user + Leaf_folder
 startdate = 1
 enddate = 300
 thr_max = enddate + 5
-reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]])
+
+if area == 'europe':
+    reg = ee.Geometry.Polygon([[[-10.5833, 71.2583], [-10.5833, 35.99], [44.816, 35.99], [44.816, 71.2583]]])
+
+elif area == 'conus':
+    reg = ee.Geometry.Polygon([[[-126.3, 49.25], [-126.3, 14.30], [-56.17, 14.30], [-56.17, 49.25]]])
 
 for yr in years:
     yr = int(yr)
