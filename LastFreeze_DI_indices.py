@@ -55,7 +55,8 @@ if area == 'europe':
     bandminT = 1
 
 elif area == 'conus':
-    years = list(np.linspace(1980, 2022, num=43))
+    # years = list(np.linspace(1980, 2022, num=43))
+    years = [2022]
     data = 'NASA/ORNL/DAYMET_V4'
     last_folder = 'SIx_products/LastF_Daymetv4/'
     di_folder = 'SIx_products/DI_Daymetv4/'
@@ -99,7 +100,7 @@ for yr in years:
     # ****************************END OF PART 1**********************************/
 
     # ********PART 2--- Mapping the last freeze function to the collection*******/
-    LastFIndex = lastFreeze(collection, area).max().rename('Last_F')
+    LastFIndex = lastFreeze(sub_collection, area).max().rename('Last_F')
 
     imageAsset = root_lastf + str(yr)
 

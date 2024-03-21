@@ -291,10 +291,12 @@ def lastFreeze(collection, area):
         date = ee.Date(Temperature.get("system:time_start"))
         I = ee.Image(ee.Number(date.getRelative('day', 'year')).add(1))
         if area == 'europe':
-            Temperature = Temperature.expression('b(0)/100 *1.8 + 32')
+            Temperature = ee.Image(Temperature.expression('b(0)/100 *1.8 + 32')\
+            .copyProperties(Temperature,['system:time_start']))
 
         elif area == 'conus':
-            Temperature = Temperature.expression('(b(0) *1.8) + 32')
+            Temperature = ee.Image(Temperature.expression('(b(0) *1.8) + 32')\
+            .copyProperties(Temperature,['system:time_start']))
         Tfreeze = Temperature.where(Temperature.lte(28), I)
         Tfreeze = Tfreeze.where(Temperature.gt(28), 0)
         return Tfreeze
