@@ -20,7 +20,7 @@ keywords:
   - "google earth engine"
   - "continenal scale"
   - "high resolution"
-license: "xxxxxx"
+license: "CC BY 4.0"
 message: "If you use this software, please cite it using these metadata."
 title: "Extended Spring Indices: Toolbox to process in Google Earth Engine. "
 version: "5.0"
