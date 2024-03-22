@@ -1,2 +1,2 @@
-earthengine-api~=0.1.278
+earthengine-api~=0.1.394
 numpy~=1.19.3
