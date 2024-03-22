@@ -37,8 +37,9 @@ where $ACGDH$ is the accumulation of GDH from the date of the First Leaf index a
 This toolbox contains the following functions:
 
 1. Leaf_Index.py    - Computes the Leaf images from 1st January to the day of the year (DOY) 300. The images have four bands: Lilac, Arnold Red, Zabeli and Leaf.
-2. Bloom_Index.py   - Computes the Bloom images from 1st January to the day of the year (DOY) 300. The images have four bands: Lilac, Arnold Red, Zabeli and Bloom.
-3. six_functions.py - Main file that contains the functions used to calculate spring indices.
+2. Bloom_Index.py   - Computes the Bloom images from 1st January to the DOY 300. The images have four bands: Lilac, Arnold Red, Zabeli and Bloom.
+3. LastFreeze_DI_indices.py - Computes the Last Freeze DOY from 1st January to 300 and the Damage Index. Last Freeze images have one band: Last_F. Damage Index images have four bands: Lilac, Arnold Red, Zabeli and DI.
+4. six_functions.py - Main file that contains the functions used to calculate spring indices.
 
 ## Study areas
 
